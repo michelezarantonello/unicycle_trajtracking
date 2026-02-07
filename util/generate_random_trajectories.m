@@ -56,8 +56,8 @@ end
 
 %% trajectories
 % generate trajectories if they don't exist
-if isfile("random_trajectories.mat") % just load
-    load("random_trajectories.mat");
+if isfile("data/random_trajectories.mat") % just load
+    load("data/random_trajectories.mat");
     disp("Loaded trajectories.");
 else % generate
     step = 1;
@@ -82,8 +82,8 @@ else % generate
         end
         trajectories("trajectory"+i).setpoint = end_point + [trajectory_scale/10, sign*r*trajectory_scale/2.5];
     end
-    save("random_trajectories.mat", "nr_trajectories", "Ts", "N", "trajectory_scale", "trajectories");
-    load("random_trajectories.mat");
+    save("data/random_trajectories.mat", "nr_trajectories", "Ts", "N", "trajectory_scale", "trajectories");
+    load("data/random_trajectories.mat");
     disp("Generated trajectories.");
 end
 
