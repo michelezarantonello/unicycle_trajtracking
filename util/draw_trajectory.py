@@ -37,6 +37,19 @@ class Canvas:
         self.smooth_btn.pack(side="left", padx=5)
         tk.Button(control_frame, text="SAVE", command=self.save).pack(side="left", padx=5)
 
+        self.manual_dx = tk.StringVar(value="0")
+        self.manual_dy = tk.StringVar(value="0")
+        tk.Label(control_frame, text="dx:").pack(side="left", padx=(20, 2))
+        tk.Entry(control_frame, textvariable=self.manual_dx, width=6).pack(side="left")
+        tk.Label(control_frame, text="dy:").pack(side="left", padx=(10, 2))
+        tk.Entry(control_frame, textvariable=self.manual_dy, width=6).pack(side="left")
+        tk.Button(
+            control_frame,
+            text="Apply Offset",
+            command=self.apply_manual_offset
+        ).pack(side="left", padx=5)
+
+
         instructions = (
             "left click to insert points, the smoothed path is calculated on the fly.\n"
             "at the end, hold right mouse button and draw an arrow for the setpoint and orientation (regulation task), then you can save.\n"
@@ -74,6 +87,37 @@ class Canvas:
         self.canvas.bind("<Button-3>", self.start_setpoint)
         self.canvas.bind("<B3-Motion>", self.update_setpoint)
         self.canvas.bind("<ButtonRelease-3>", self.finish_setpoint)
+
+    def apply_manual_offset(self):
+        try:
+            dx = float(self.manual_dx.get())
+            dy = float(self.manual_dy.get())
+        except ValueError:
+            print("Invalid offset values.")
+            return
+
+        if not self.points:
+            return
+
+        # shift control points
+        for p in self.points:
+            p[0] += dx
+            p[1] += dy
+
+        # shift smooth points
+        for p in self.smooth_points:
+            p[0] += dx
+            p[1] += dy
+
+        # shift setpoint
+        if self.setpoint is not None:
+            self.setpoint = (
+                self.setpoint[0] + dx,
+                self.setpoint[1] + dy
+            )
+
+        self.redraw()
+
 
     def toggle_smoothing(self):
         self.smoothing_enabled = not self.smoothing_enabled

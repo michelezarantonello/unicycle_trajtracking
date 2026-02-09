@@ -17,12 +17,6 @@ for i = 1:nr_trajectories
         pts(:, 1) = pts(:, 1) / x_diff;
         pts(:, 2) = pts(:, 2) / y_diff;
     end
-    % start from (0, 0)
-    offset = pts(1, :);
-    pts(:, 1) = pts(:, 1) - offset(1);
-    pts(:, 2) = pts(:, 2) - offset(2);
-    % scale
-    pts = pts * trajectory_scale;
     % interpolate
     pts = interpolate_trajectory(pts, N, "linear");
     
