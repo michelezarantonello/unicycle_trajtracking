@@ -7,7 +7,7 @@ import math
 
 
 #############################
-maze_file = "data/pacman_maze.png"
+maze_file = "../data/pacman_maze.png"
 WIDTH = 800
 HEIGHT = 800
 SMOOTH_STEPS = 20
@@ -254,7 +254,7 @@ class Canvas:
         # self.print_smooth_path()
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        folder = f"data/path_{timestamp}"
+        folder = f"../data/path_{timestamp}"
         os.makedirs(folder, exist_ok=True)
 
         control_csv = os.path.join(folder, "control_path.csv")
