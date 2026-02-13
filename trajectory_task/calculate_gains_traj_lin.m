@@ -2,7 +2,7 @@ function k = calculate_gains_traj_lin(vd, wd)
 % TODO: find good values via analysis
 
 xi = 0.7;
-a  = 1;
+a  = 6;
 
 k1 = 2*xi*a;
 k3 = 2*xi*a;
