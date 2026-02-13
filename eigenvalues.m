@@ -3,8 +3,8 @@ a_nominal = 2.5;
 v_des_nominal = 165;
 w_des_nominal = 10;
 
-xi_vals = linspace(0.1, 0.9, 100);
-a_vals = linspace(0.1, 5, 100);
+xi_vals = linspace(0.05, 1, 100);
+a_vals = linspace(0.05, 2, 100);
 v_vals = linspace(-250, 250, 100);
 w_vals = linspace(-pi, pi, 100);
 
