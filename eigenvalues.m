@@ -4,7 +4,7 @@ v_des_nominal = 165;
 w_des_nominal = 10;
 
 xi_vals = linspace(0.05, 1, 100);
-a_vals = linspace(0.05, 2, 100);
+a_vals = linspace(0.05, 10, 100);
 v_vals = linspace(-250, 250, 100);
 w_vals = linspace(-pi, pi, 100);
 
