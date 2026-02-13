@@ -11,7 +11,7 @@ w_avg_2 = (w_max + abs(w_min)) * 0.5;
 %increase b --> speed dominant behaviour 
 %decrease b --> turn dominant behaviour 
 
-b = w_avg/v_avg;
+b = (w_avg^2)/v_avg;
 
 %to balance k3/k2 ratio
 
@@ -19,7 +19,7 @@ xi = b / (2 * sqrt(b * v_avg + w_avg^2));
 
 
 %------------%
-b = w_avg_2/v_avg;
+b = (w_avg_2^2 )/v_avg;
 
 %to balance k3/k2 ratio
 
