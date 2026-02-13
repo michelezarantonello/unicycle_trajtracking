@@ -39,11 +39,11 @@ for eig_i = 1:3
     plot(lambda_re(eig_i,:), lambda_im(eig_i,:), 'Color', colors(eig_i), 'LineWidth', 2);
     
     text(lambda_re(eig_i,1), lambda_im(eig_i,1), ...
-        sprintf('\\xi = %.1f', xi_vals(1)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('\\xi = %.1f', xi_vals(1)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','right','VerticalAlignment','bottom');
     
     text(lambda_re(eig_i,end), lambda_im(eig_i,end), ...
-        sprintf('\\xi = %.1f', xi_vals(end)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('\\xi = %.1f', xi_vals(end)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','left','VerticalAlignment','top');
 end
 xlabel('Re(\lambda)');
@@ -83,11 +83,11 @@ for eig_i = 1:3
     plot(lambda_re(eig_i,:), lambda_im(eig_i,:), 'Color', colors(eig_i), 'LineWidth', 2);
     
     text(lambda_re(eig_i,1), lambda_im(eig_i,1), ...
-        sprintf('a = %.1f', a_vals(1)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('a = %.1f', a_vals(1)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','right','VerticalAlignment','bottom');
     
     text(lambda_re(eig_i,end), lambda_im(eig_i,end), ...
-        sprintf('a = %.1f', a_vals(end)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('a = %.1f', a_vals(end)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','left','VerticalAlignment','top');
 end
 xlabel('Re(\lambda)');
@@ -127,11 +127,11 @@ for eig_i = 1:3
     plot(lambda_re(eig_i,:), lambda_im(eig_i,:), 'Color', colors(eig_i), 'LineWidth', 2);
     
     text(lambda_re(eig_i,1), lambda_im(eig_i,1), ...
-        sprintf('v = %.1f', v_vals(1)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('v = %.1f', v_vals(1)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','right','VerticalAlignment','bottom');
     
     text(lambda_re(eig_i,end), lambda_im(eig_i,end), ...
-        sprintf('v = %.1f', v_vals(end)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('v = %.1f', v_vals(end)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','left','VerticalAlignment','top');
 end
 xlabel('Re(\lambda)');
@@ -171,11 +171,11 @@ for eig_i = 1:3
     plot(lambda_re(eig_i,:), lambda_im(eig_i,:), 'Color', colors(eig_i), 'LineWidth', 2);
     
     text(lambda_re(eig_i,1), lambda_im(eig_i,1), ...
-        sprintf('w = %.1f', w_vals(1)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('w = %.1f', w_vals(1)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','right','VerticalAlignment','bottom');
     
     text(lambda_re(eig_i,end), lambda_im(eig_i,end), ...
-        sprintf('w = %.1f', w_vals(end)), 'FontSize', 5, 'Color', colors(eig_i), ...
+        sprintf('w = %.1f', w_vals(end)), 'FontSize', 10, 'Color', colors(eig_i), ...
         'HorizontalAlignment','left','VerticalAlignment','top');
 end
 xlabel('Re(\lambda)');
@@ -191,150 +191,150 @@ axis equal;
 %%
 
 
-%% 3d - xi - v
-figure;
-colors = ['r','g','b'];
-for eig_i = 1:3
-    for v_des = v_vals
-        lambda_re = zeros(1,length(xi_vals));
-        lambda_im = zeros(1,length(xi_vals));
-        for xi_i = 1:length(xi_vals)
-            xi = xi_vals(xi_i);
-            a = a_nominal;
-            w_des = w_des_nominal;
-
-            k1 = 2*xi*a;
-            k3 = k1;
-            k2 = (a^2 - w_des^2)/v_des;
-            A = [-k1, w_des, 0;
-                 -w_des, 0, v_des;
-                 0, -k2, -k3];
-            lambda = eig(A);
-            
-            lambda_im(xi_i) = imag(lambda(eig_i));
-            lambda_re(xi_i) = real(lambda(eig_i));
-        end
-        % plot3(lambda_re, lambda_im, xi_vals, "Color", colors(eig_i));
-        plot(lambda_re, lambda_im, "Color", colors(eig_i));
-        hold on;
-    end
-end
-hold off;
-xlabel('Re(\lambda)');
-ylabel('Im(\lambda)');
-% zlabel('\xi');
-grid on;
-title('xi - v');
-% view(45,30);
-
-
-%% 3d - xi - w
-figure;
-colors = ['r','g','b'];
-for eig_i = 1:3
-    for w_des = w_vals
-        lambda_re = zeros(1,length(xi_vals));
-        lambda_im = zeros(1,length(xi_vals));
-        for xi_i = 1:length(xi_vals)
-            xi = xi_vals(xi_i);
-            a = a_nominal;
-            v_des = v_des_nominal;
-
-            k1 = 2*xi*a;
-            k3 = k1;
-            k2 = (a^2 - w_des^2)/v_des;
-            A = [-k1, w_des, 0;
-                 -w_des, 0, v_des;
-                 0, -k2, -k3];
-            lambda = eig(A);
-            
-            lambda_im(xi_i) = imag(lambda(eig_i));
-            lambda_re(xi_i) = real(lambda(eig_i));
-        end
-        % plot3(lambda_re, lambda_im, xi_vals, "Color", colors(eig_i));
-        plot(lambda_re, lambda_im, "Color", colors(eig_i));
-        hold on;
-    end
-end
-hold off;
-xlabel('Re(\lambda)');
-ylabel('Im(\lambda)');
-% zlabel('\xi');
-grid on;
-title('xi - w');
-% view(45,30);
-
-
-%% 3d - a - v
-figure;
-colors = ['r','g','b'];
-for eig_i = 1:3
-    for v_des = v_vals
-        lambda_re = zeros(1,length(xi_vals));
-        lambda_im = zeros(1,length(xi_vals));
-        for a_i = 1:length(a_vals)
-            a = a_vals(a_i);
-            xi = xi_nominal;
-            w_des = w_des_nominal;
-
-            k1 = 2*xi*a;
-            k3 = k1;
-            k2 = (a^2 - w_des^2)/v_des;
-            A = [-k1, w_des, 0;
-                 -w_des, 0, v_des;
-                 0, -k2, -k3];
-            lambda = eig(A);
-            
-            lambda_im(a_i) = imag(lambda(eig_i));
-            lambda_re(a_i) = real(lambda(eig_i));
-        end
-        % plot3(lambda_re, lambda_im, a_vals, "Color", colors(eig_i));
-        plot(lambda_re, lambda_im, "Color", colors(eig_i));
-        hold on;
-    end
-end
-hold off;
-xlabel('Re(\lambda)');
-ylabel('Im(\lambda)');
-% zlabel('a');
-grid on;
-title('a - v');
-% view(45,30);
-
-
-%% 3d - a - w
-figure;
-colors = ['r','g','b'];
-for eig_i = 1:3
-    for w_des = w_vals
-        lambda_re = zeros(1,length(xi_vals));
-        lambda_im = zeros(1,length(xi_vals));
-        for a_i = 1:length(a_vals)
-            a = a_vals(a_i);
-            xi = xi_nominal;
-            v_des = v_des_nominal;
-
-            k1 = 2*xi*a;
-            k3 = k1;
-            k2 = (a^2 - w_des^2)/v_des;
-            A = [-k1, w_des, 0;
-                 -w_des, 0, v_des;
-                 0, -k2, -k3];
-            lambda = eig(A);
-            
-            lambda_im(a_i) = imag(lambda(eig_i));
-            lambda_re(a_i) = real(lambda(eig_i));
-        end
-        % plot3(lambda_re, lambda_im, a_vals, "Color", colors(eig_i));
-        plot(lambda_re, lambda_im, "Color", colors(eig_i));
-        hold on;
-    end
-end
-hold off;
-xlabel('Re(\lambda)');
-ylabel('Im(\lambda)');
-% zlabel('a');
-grid on;
-title('a - w');
-% view(45,30);
-
+% %% 3d - xi - v
+% figure;
+% colors = ['r','g','b'];
+% for eig_i = 1:3
+%     for v_des = v_vals
+%         lambda_re = zeros(1,length(xi_vals));
+%         lambda_im = zeros(1,length(xi_vals));
+%         for xi_i = 1:length(xi_vals)
+%             xi = xi_vals(xi_i);
+%             a = a_nominal;
+%             w_des = w_des_nominal;
+% 
+%             k1 = 2*xi*a;
+%             k3 = k1;
+%             k2 = (a^2 - w_des^2)/v_des;
+%             A = [-k1, w_des, 0;
+%                  -w_des, 0, v_des;
+%                  0, -k2, -k3];
+%             lambda = eig(A);
+% 
+%             lambda_im(xi_i) = imag(lambda(eig_i));
+%             lambda_re(xi_i) = real(lambda(eig_i));
+%         end
+%         % plot3(lambda_re, lambda_im, xi_vals, "Color", colors(eig_i));
+%         plot(lambda_re, lambda_im, "Color", colors(eig_i));
+%         hold on;
+%     end
+% end
+% hold off;
+% xlabel('Re(\lambda)');
+% ylabel('Im(\lambda)');
+% % zlabel('\xi');
+% grid on;
+% title('xi - v');
+% % view(45,30);
+% 
+% 
+% %% 3d - xi - w
+% figure;
+% colors = ['r','g','b'];
+% for eig_i = 1:3
+%     for w_des = w_vals
+%         lambda_re = zeros(1,length(xi_vals));
+%         lambda_im = zeros(1,length(xi_vals));
+%         for xi_i = 1:length(xi_vals)
+%             xi = xi_vals(xi_i);
+%             a = a_nominal;
+%             v_des = v_des_nominal;
+% 
+%             k1 = 2*xi*a;
+%             k3 = k1;
+%             k2 = (a^2 - w_des^2)/v_des;
+%             A = [-k1, w_des, 0;
+%                  -w_des, 0, v_des;
+%                  0, -k2, -k3];
+%             lambda = eig(A);
+% 
+%             lambda_im(xi_i) = imag(lambda(eig_i));
+%             lambda_re(xi_i) = real(lambda(eig_i));
+%         end
+%         % plot3(lambda_re, lambda_im, xi_vals, "Color", colors(eig_i));
+%         plot(lambda_re, lambda_im, "Color", colors(eig_i));
+%         hold on;
+%     end
+% end
+% hold off;
+% xlabel('Re(\lambda)');
+% ylabel('Im(\lambda)');
+% % zlabel('\xi');
+% grid on;
+% title('xi - w');
+% % view(45,30);
+% 
+% 
+% %% 3d - a - v
+% figure;
+% colors = ['r','g','b'];
+% for eig_i = 1:3
+%     for v_des = v_vals
+%         lambda_re = zeros(1,length(xi_vals));
+%         lambda_im = zeros(1,length(xi_vals));
+%         for a_i = 1:length(a_vals)
+%             a = a_vals(a_i);
+%             xi = xi_nominal;
+%             w_des = w_des_nominal;
+% 
+%             k1 = 2*xi*a;
+%             k3 = k1;
+%             k2 = (a^2 - w_des^2)/v_des;
+%             A = [-k1, w_des, 0;
+%                  -w_des, 0, v_des;
+%                  0, -k2, -k3];
+%             lambda = eig(A);
+% 
+%             lambda_im(a_i) = imag(lambda(eig_i));
+%             lambda_re(a_i) = real(lambda(eig_i));
+%         end
+%         % plot3(lambda_re, lambda_im, a_vals, "Color", colors(eig_i));
+%         plot(lambda_re, lambda_im, "Color", colors(eig_i));
+%         hold on;
+%     end
+% end
+% hold off;
+% xlabel('Re(\lambda)');
+% ylabel('Im(\lambda)');
+% % zlabel('a');
+% grid on;
+% title('a - v');
+% % view(45,30);
+% 
+% 
+% %% 3d - a - w
+% figure;
+% colors = ['r','g','b'];
+% for eig_i = 1:3
+%     for w_des = w_vals
+%         lambda_re = zeros(1,length(xi_vals));
+%         lambda_im = zeros(1,length(xi_vals));
+%         for a_i = 1:length(a_vals)
+%             a = a_vals(a_i);
+%             xi = xi_nominal;
+%             v_des = v_des_nominal;
+% 
+%             k1 = 2*xi*a;
+%             k3 = k1;
+%             k2 = (a^2 - w_des^2)/v_des;
+%             A = [-k1, w_des, 0;
+%                  -w_des, 0, v_des;
+%                  0, -k2, -k3];
+%             lambda = eig(A);
+% 
+%             lambda_im(a_i) = imag(lambda(eig_i));
+%             lambda_re(a_i) = real(lambda(eig_i));
+%         end
+%         % plot3(lambda_re, lambda_im, a_vals, "Color", colors(eig_i));
+%         plot(lambda_re, lambda_im, "Color", colors(eig_i));
+%         hold on;
+%     end
+% end
+% hold off;
+% xlabel('Re(\lambda)');
+% ylabel('Im(\lambda)');
+% % zlabel('a');
+% grid on;
+% title('a - w');
+% % view(45,30);
+% 

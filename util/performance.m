@@ -1,4 +1,4 @@
-function out = performance(t, x, y, theta, v, w, xd, yd, thetad, vd, wd, typestr, statestr)
+function out = performance(t, x, y, theta, v, w, xd, yd, thetad, vd, wd, typestr)
 
 %% transient (for straight lines)
 rising_time_x = 0;
@@ -29,23 +29,26 @@ mse_euc = 0;
 
 %% calculations
 if typestr == "transient"
-    if statestr == "x" % vertical line, x offset
-        S = stepinfo(xd - x, t);
+        S = stepinfo(x, t);
+        disp("x step info:");
+        disp(S);
         rising_time_x = S.RiseTime;
         settling_time_x = S.SettlingTime;
         overshoot_x = S.Overshoot;
-    elseif statestr == "y" % horizontal line, y offset
-        S = stepinfo(yd - y, t);
+
+        S = stepinfo(y, t);
+        disp("y step info:");
+        disp(S);
         rising_time_y = S.RiseTime;
         settling_time_y = S.SettlingTime;
         overshoot_y = S.Overshoot;
-    elseif statestr == "theta" % slanted line, 0 offset
-        e_theta = atan2(sin(theta - thetad), cos(theta - thetad));
-        S = stepinfo(e_theta, t);
+
+        S = stepinfo(theta, t);
+        disp("theta step info:");
+        disp(S);
         rising_time_theta = S.RiseTime;
         settling_time_theta = S.SettlingTime;
         overshoot_theta = S.Overshoot;
-    end
 end
 
 se_x = (xd - x).^2;

@@ -34,7 +34,18 @@ wd = out.logsout.get("wd").Values.Data;
 % end
 
 %%
-perf = performance(t, x, y, theta, v, w, xd, yd, thetad, vd, wd, "", "");
+perf_ss = performance(t, x, y, theta, v, w, xd, yd, thetad, vd, wd, "");
+perf_transient = performance(t, x, y, theta, v, w, xd, yd, thetad, vd, wd, "transient");
+
+disp("rising_time_x = " + perf_transient.rising_time_x);
+disp("rising_time_y = " + perf_transient.rising_time_y);
+disp("rising_time_theta = " + perf_transient.rising_time_theta);
+disp("overshoot_x = " + perf_transient.overshoot_x );
+disp("overshoot_y = " + perf_transient.overshoot_y);
+disp("overshoot_z = " + perf_transient.overshoot_theta);
+disp("settling_time_x = " + perf_transient.settling_time_x);
+disp("settling_time_y = " + perf_transient.settling_time_y);
+disp("settling_time_theta = " + perf_transient.settling_time_theta);
 
 figure;
 plot(x, y, "DisplayName", "Followed Trajectory", "LineWidth", 3.0);
@@ -72,43 +83,43 @@ ylabel("\omega (rad/s)");
 legend();
 
 figure;
-plot(t, perf.se_x, "LineWidth", 2.0);
-title("Squared Error (X) vs. Time [MSE = " + perf.mse_x + "]");
+plot(t, perf_ss.se_x, "LineWidth", 2.0);
+title("Squared Error (X) vs. Time [MSE = " + perf_ss.mse_x + "]");
 grid("on");
 xlabel("t (s)");
 ylabel("SE");
 
 figure;
-plot(t, perf.se_y, "LineWidth", 2.0);
-title("Squared Error (Y) vs. Time [MSE = " + perf.mse_y + "]");
+plot(t, perf_ss.se_y, "LineWidth", 2.0);
+title("Squared Error (Y) vs. Time [MSE = " + perf_ss.mse_y + "]");
 grid("on");
 xlabel("t (s)");
 ylabel("SE");
 
 figure;
-plot(t, perf.se_euc, "LineWidth", 2.0);
-title("Squared Error (Euclidean) vs. Time [MSE = " + perf.mse_euc + "]");
+plot(t, perf_ss.se_euc, "LineWidth", 2.0);
+title("Squared Error (Euclidean) vs. Time [MSE = " + perf_ss.mse_euc + "]");
 grid("on");
 xlabel("t (s)");
 ylabel("SE");
 
 figure;
-plot(t, perf.se_lateral, "LineWidth", 2.0);
-title("Squared Error (Lateral) vs. Time [MSE = " + perf.mse_lateral+ "]");
+plot(t, perf_ss.se_lateral, "LineWidth", 2.0);
+title("Squared Error (Lateral) vs. Time [MSE = " + perf_ss.mse_lateral+ "]");
 grid("on");
 xlabel("t (s)");
 ylabel("SE");
 
 figure;
-plot(t, perf.se_heading, "LineWidth", 2.0);
-title("Squared Error (Heading) vs. Time [MSE = " + perf.mse_heading+ "]");
+plot(t, perf_ss.se_heading, "LineWidth", 2.0);
+title("Squared Error (Heading) vs. Time [MSE = " + perf_ss.mse_heading+ "]");
 grid("on");
 xlabel("t (s)");
 ylabel("SE");
 
 figure;
-plot(t, perf.cos_loss_theta, "LineWidth", 2.0);
-title("Cosine Loss (\theta) vs. Time [Mean Cosine Loss = " + perf.mcos_loss_theta+ "]");
+plot(t, perf_ss.cos_loss_theta, "LineWidth", 2.0);
+title("Cosine Loss (\theta) vs. Time [Mean Cosine Loss = " + perf_ss.mcos_loss_theta+ "]");
 grid("on");
 xlabel("t (s)");
 ylabel("Cosine Loss");
@@ -118,7 +129,7 @@ plot(t, x, "LineWidth", 2.0, "DisplayName", "X");
 hold on;
 plot(t, xd, "LineWidth", 2.0, "DisplayName", "Desired X");
 hold off;
-title("X position vs. Time [MSE = " + perf.mse_x + "]");
+title("X position vs. Time [MSE = " + perf_ss.mse_x + "]");
 grid("on");
 xlabel("t (s)");
 ylabel("X");
@@ -129,7 +140,7 @@ plot(t, y, "LineWidth", 2.0, "DisplayName", "Y");
 hold on;
 plot(t, yd, "LineWidth", 2.0, "DisplayName", "Desired Y");
 hold off;
-title("Y position vs. Time [MSE = " + perf.mse_y + "]");
+title("Y position vs. Time [MSE = " + perf_ss.mse_y + "]");
 grid("on");
 xlabel("t (s)");
 ylabel("Y");
@@ -140,7 +151,7 @@ plot(t, theta, "LineWidth", 2.0, "DisplayName", "\theta");
 hold on;
 plot(t, thetad, "LineWidth", 2.0, "DisplayName", "Desired \theta");
 hold off;
-title("\theta angle vs. Time [Mean Cosine Loss = " + perf.mcos_loss_theta + "]");
+title("\theta angle vs. Time [Mean Cosine Loss = " + perf_ss.mcos_loss_theta + "]");
 grid("on");
 xlabel("t (s)");
 ylabel("\theta (rad)");
