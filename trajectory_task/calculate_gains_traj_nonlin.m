@@ -1,8 +1,8 @@
 function k = calculate_gains_traj_nonlin(vd, wd)
 % TODO: find good values via analysis
 
-xi = 1;
-b  = 1;
+xi = 5;
+b  = 0.05;
 
 k1 = 2*xi*sqrt(b*vd + wd^2);
 k3 = 2*xi*sqrt(b*vd + wd^2);

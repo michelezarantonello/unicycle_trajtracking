@@ -12,6 +12,11 @@ vd = out.logsout.get("vd").Values.Data;
 w = out.logsout.get("w_sampled").Values.Data;
 wd = out.logsout.get("wd").Values.Data;
 
+% x_dot = out.logsout.get("x_dot_sampled").Values.Data;
+% y_dot = out.logsout.get("y_dot_sampled").Values.Data;
+% xd_dot = out.logsout.get("xd_dot").Values.Data;
+% yd_dot = out.logsout.get("yd_dot").Values.Data;
+
 %%% no need for this anymore, samples are matched in simulation
 % %% account for different sample times
 % tx  = out.logsout.get("x").Values.Time;
@@ -156,3 +161,32 @@ grid("on");
 xlabel("t (s)");
 ylabel("\theta (rad)");
 legend();
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+% se_x_dot = (xd_dot - x_dot).^2;
+% mse_x_dot = mean(se_x_dot);
+% se_y_dot = (yd_dot - y_dot).^2;
+% mse_y_dot = mean(se_y_dot);
+% 
+% figure;
+% plot(t, x_dot, "LineWidth", 2.0, "DisplayName", "X dot");
+% hold on;
+% plot(t, xd_dot, "LineWidth", 2.0, "DisplayName", "Desired X dot");
+% hold off;
+% title("X dot vs. Time [MSE = " + mse_x_dot + "]");
+% grid("on");
+% xlabel("t (s)");
+% ylabel("X dot");
+% legend();
+% 
+% figure;
+% plot(t, y_dot, "LineWidth", 2.0, "DisplayName", "Y dot");
+% hold on;
+% plot(t, yd_dot, "LineWidth", 2.0, "DisplayName", "Desired Y dot");
+% hold off;
+% title("Y dot vs. Time [MSE = " + mse_y_dot + "]");
+% grid("on");
+% xlabel("t (s)");
+% ylabel("Y dot");
+% legend();
