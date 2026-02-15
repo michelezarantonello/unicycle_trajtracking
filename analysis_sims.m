@@ -151,6 +151,16 @@ for r = 1:numel(uniqueRefs)
         figure(figs.cos);
         plot(t, perf_ss.cos_loss_theta,'LineWidth',2,'DisplayName',controller+" [Mean="+perf_ss.mcos_loss_theta+"]");
 
+        disp("trajectory " + refID);
+        disp("controller " + controller);
+        disp("mse x " + perf_ss.mse_x);
+        disp("mse y " + perf_ss.mse_y);
+        disp("mse euc " + perf_ss.mse_euc);
+        disp("mse lat " + perf_ss.mse_lateral);
+        disp("mse head " + perf_ss.mse_heading);
+        disp("cos loss mean " + perf_ss.mcos_loss_theta);
+
+
         figure(figs.x);
         plot(t, x,'LineWidth',2,'DisplayName',controller);
         if k==1
@@ -190,3 +200,59 @@ for r = 1:numel(uniqueRefs)
     end
 
 end
+
+
+
+
+%{
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{c c r r r r r r}
+\hline
+Traj & Controller & MSE$_x$ & MSE$_y$ & MSE$_{euc}$ & MSE$_{lat}$ & MSE$_{head}$ & Mean Cos Loss \\
+\hline
+1 &           lin &     \textbf{0.35286} &     \textbf{0.35286} &     \textbf{0.70571} &           0.010733 &     \textbf{0.00047725} &     \textbf{0.00023855} \\
+1 &           nonlin &           0.40586 &           0.38987 &           0.79573 &     \textbf{0.0020413} &           0.00071567 &           0.0003576 \\
+1 &           output &           1.5228 &           1.6127 &           3.1355 &           0.022871 &           0.002528 &           0.0012616 \\
+\hline
+2 &           lin &     \textbf{0.5801} &     \textbf{0.49281} &     \textbf{1.0729} &     \textbf{0.0024109} &     \textbf{0.00067085} &     \textbf{0.00033527} \\
+2 &           nonlin &           0.69103 &           0.56246 &           1.2535 &           0.0097205 &           0.0013021 &           0.00065036 \\
+2 &           output &           1.9258 &           1.8001 &           3.7259 &           0.0092507 &           0.003342 &           0.0016671 \\
+\hline
+3 &           lin &           3.8417 &           3.2029 &           7.0446 &           3.3429 &           0.059455 &           0.019096 \\
+3 &           nonlin &     \textbf{0.37978} &     \textbf{0.33559} &   \textbf{0.71537} &        0.028473 &     \textbf{0.022173} &     \textbf{0.0066106} \\
+3 &           output &           1.493 &           1.5245 &           3.0176 &     \textbf{0.0046243} &           0.029811 &           0.0078014 \\
+\hline
+4 &           lin &           3.2942 &           2.0532 &           5.3474 &           4.117 &     \textbf{0.0084831} &     \textbf{0.0041636} \\
+4 &           nonlin &  \textbf{0.4893} &  \textbf{0.39651} &  \textbf{0.88581} &  \textbf{0.0081814} &           0.0093383 &           0.0044685 \\
+4 &           output &           1.7457 &           1.54 &           3.2856 &           0.042389 &           0.017123 &           0.0080092 \\
+\hline
+5 &           lin &           7.9535 &           6.3641 &           14.3176 &           8.8023 &           0.070341 &           0.024238 \\
+5 &           nonlin &     \textbf{0.57222} &     \textbf{0.28562} &     \textbf{0.85784} &   0.027989 &     \textbf{0.027231} &     \textbf{0.0091123} \\
+5 &           output &           2.1335 &           1.1132 &           3.2468 &     \textbf{0.017072} &           0.039226 &           0.012214 \\
+\hline
+6 &           lin &     \textbf{1.806} &     \textbf{0.75286} &     \textbf{2.5589} &           0.0021848 &     \textbf{0.0002728} &     \textbf{0.00013639} \\
+6 &           nonlin &           2.0689 &           0.87849 &           2.9474 &     \textbf{0.0011348} &           0.00035802 &           0.00017898 \\
+6 &           output &           3.8381 &           1.7087 &           5.5468 &           0.03195 &           0.001258 &           0.0006287 \\
+\hline
+7 &           lin &           106.1178 &           113.5517 &           219.6695 &           162.3627 &           0.087516 &           0.034289 \\
+7 &           nonlin &     \textbf{4.0673} &     \textbf{2.4296} &     \textbf{6.4969} &     \textbf{0.1086} &     \textbf{0.019465} &     \textbf{0.0092882} \\
+7 &           output &           5.9929 &           3.5339 &           9.5269 &           0.11647 &           0.025089 &           0.011844 \\
+\hline
+8 &           lin &     \textbf{0.015634} &   3.8133e-71 &     \textbf{0.015634} &  3.8133e-71 &           2.0972e-72 &     \textbf{0} \\
+8 &           nonlin &           0.015847 &   5.7723e-71 &           0.015847 &     5.7723e-71 &           2.6976e-72 &     \textbf{0} \\
+8 &           output &           1.1376 &     \textbf{0} &           1.1376 &     \textbf{0} &     \textbf{0} &     \textbf{0} \\
+\hline
+9 &           lin &     \textbf{0.033175} &     \textbf{0.035425} &     \textbf{0.0686} &           0.00096095 &     \textbf{4.3395e-05} &     \textbf{2.1694e-05} \\
+9 &           nonlin &           0.035146 &           0.035476 &           0.070622 &     \textbf{0.00014215} &           4.5971e-05 &           2.298e-05 \\
+9 &           output &           0.64196 &           0.78529 &           1.4273 &           0.00076788 &           0.00029428 &           0.00014698 \\
+
+\hline
+\end{tabular}
+\caption{Controller performance metrics across trajectories}
+\label{tab:controller_results}
+\end{table}
+
+%}
