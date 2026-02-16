@@ -90,40 +90,40 @@ end
 trajectories = process_trajectories(unprocessed_trajectories, Ts, N, normalize_trajectories, trajectory_scale);
 
 
-% % plot
-% len = 0;
-% x_range = 0;
-% y_range = 0;
-% nr_trajectories = numel(unprocessed_trajectories);
-% pltid = 1;
-% for i = 1:nr_trajectories
-%     xd_ts = trajectories("trajectory"+i).xd_ts;
-%     yd_ts = trajectories("trajectory"+i).yd_ts;
-%     len = numel(xd_ts.Data);
-% 
-%     if pltid == 5
-%         pltid = 1;
-%     end
-%     if pltid == 1
-%         figure;
-%     end
-%     subplot(4, 1, pltid);
-%     pltid = pltid + 1;
-%     hold on;
-%     plot(xd_ts.Data, yd_ts.Data, "LineWidth", 2.0, "DisplayName", "Trajectory "+i);
-%     plot(0, 0, ">", "LineWidth", 4.0, "DisplayName", "Start");
-%     plot(xd_ts.Data(end), yd_ts.Data(end), "o", "LineWidth", 4.0, "DisplayName", "End");
-%     hold off;
-% 
-%     grid minor;
-%     title("Trajectory " + i);
-%     xlabel("X");
-%     ylabel("Y");
-% 
-%     zoom(0.8);
-% 
-%     legend();
-% end
+% plot
+len = 0;
+x_range = 0;
+y_range = 0;
+nr_trajectories = numel(unprocessed_trajectories);
+pltid = 1;
+for i = 1:nr_trajectories
+    xd_ts = trajectories("trajectory"+i).xd_ts;
+    yd_ts = trajectories("trajectory"+i).yd_ts;
+    len = numel(xd_ts.Data);
+
+    if pltid == 5
+        pltid = 1;
+    end
+    if pltid == 1
+        figure;
+    end
+    subplot(4, 1, pltid);
+    pltid = pltid + 1;
+    hold on;
+    plot(xd_ts.Data, yd_ts.Data, "LineWidth", 2.0, "DisplayName", "Trajectory "+i);
+    plot(0, 0, ">", "LineWidth", 4.0, "DisplayName", "Start");
+    plot(xd_ts.Data(end), yd_ts.Data(end), "o", "LineWidth", 4.0, "DisplayName", "End");
+    hold off;
+
+    grid minor;
+    title("Trajectory " + i);
+    xlabel("X");
+    ylabel("Y");
+
+    zoom(0.8);
+
+    legend();
+end
 
 for i = 9:nr_trajectories
     figure;
