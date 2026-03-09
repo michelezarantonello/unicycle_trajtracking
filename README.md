@@ -6,3 +6,4 @@ set the simulation duration to the value given at the end after running main_liv
 symbols on the signals) to visualize the results.
 
 [![PDF Preview](trajectory_img.png)](unicycle_pacman_presentation.pdf)
+Click the image to open the project report.
