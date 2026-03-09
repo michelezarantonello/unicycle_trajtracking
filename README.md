@@ -4,3 +4,5 @@ the end to change the trajectory to be used in simulation.
 set the simulation duration to the value given at the end after running main_live.
 - Run the simulation, and use the logging outputs (click on the "wifi"
 symbols on the signals) to visualize the results.
+
+[![PDF Preview](mcnn_conv_first_page.png)](mcnn_conv.pdf)
