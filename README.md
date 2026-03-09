@@ -5,4 +5,4 @@ set the simulation duration to the value given at the end after running main_liv
 - Run the simulation, and use the logging outputs (click on the "wifi"
 symbols on the signals) to visualize the results.
 
-[![PDF Preview](mcnn_conv_first_page.png)](mcnn_conv.pdf)
+[![PDF Preview](trajectory_img.png)](unicycle_pacman.pdf)
